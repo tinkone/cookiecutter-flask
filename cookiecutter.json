@@ -1,8 +1,8 @@
 {
-	"full_name": "Steven Loria",
-	"email": "sloria1@gmail.com",
-	"github_username": "sloria",
-	"project_name": "My Flask App",
-	"app_name": "myflaskapp",
-	"project_short_description": "A flasky app."
+	"full_name": "Dennis Yee",
+	"email": "dennisyee+cutter@gmail.com",
+	"github_username": "tinkone",
+	"project_name": "Flask CookieCutter",
+	"app_name": "cutterapp",
+	"project_short_description": "A Cutter Application made from much opinion."
 }
