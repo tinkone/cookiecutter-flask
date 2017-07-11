@@ -23,8 +23,13 @@ environment variables ::
 
 Then run the following commands to bootstrap your environment ::
 
+    bash
     git clone https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.app_name}}
     cd {{cookiecutter.app_name}}
+    virtualenv venv
+    source venv/bin/activate
+    export FLASK_APP=autoapp.py
+    export FLASK_DEBUG=1
     pip install -r requirements/dev.txt
     bower install
     flask run

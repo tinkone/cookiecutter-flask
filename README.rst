@@ -5,17 +5,18 @@ A Flask template for cookiecutter_.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
-.. image:: https://travis-ci.org/sloria/cookiecutter-flask.svg
-    :target: https://travis-ci.org/sloria/cookiecutter-flask
+.. image:: https://travis-ci.org/tinkone/cookiecutter-flask.svg
+    :target: https://travis-ci.org/tinkone/cookiecutter-flask
     :alt: Build Status
 
 
 Use it now
 ----------
 ::
-
+    $ bash # drop to bash
     $ pip install cookiecutter
-    $ cookiecutter https://github.com/sloria/cookiecutter-flask.git
+    $ cookiecutter https://github.com/tinkone/cookiecutter-flask.git
+    
 
 You will be asked about your basic info (name, project name, app name, etc.). This info will be used in your new project.
 
@@ -210,5 +211,3 @@ Thanks @andreoliw for these contributions.
 - First iteration
 - Bootstrap 3 final
 - Working User model and registration
-
-
