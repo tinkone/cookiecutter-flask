@@ -31,10 +31,19 @@ class DevConfig(Config):
 
     ENV = 'dev'
     DEBUG = True
-    DB_NAME = 'dev.db'
+
+    dbname = 'dev.db' 
+    dbhost = 'localhost'
+    dbport = 3306
+    dbuser = 'developer'
+    dbpwd  = 'xxx'
+    dburl = 'mysql://{dbuser}:{dbpwd}@{dbhost}:{dbport}/{dbname}'.format(**locals())
     # Put the db file in project root
-    DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+    DB_PATH = os.path.join(Config.PROJECT_ROOT, dbname)
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+
+    SQLALCHEMY_DATABASE_URI = dburl
+    
     DEBUG_TB_ENABLED = True
     ASSETS_DEBUG = True  # Don't bundle/minify static assets
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
