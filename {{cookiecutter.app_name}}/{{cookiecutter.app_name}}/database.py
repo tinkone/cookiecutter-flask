@@ -2,10 +2,16 @@
 """Database module, including the SQLAlchemy database object and DB-related utilities."""
 from .compat import basestring
 from .extensions import db
+import uuid
 
 # Alias common SQLAlchemy names
 Column = db.Column
 relationship = db.relationship
+
+
+def generate_uuid():
+   return str(uuid.uuid4().hex)
+
 
 
 class CRUDMixin(object):
@@ -49,17 +55,16 @@ class SurrogatePK(object):
 
     __table_args__ = {'extend_existing': True}
 
-    id = db.Column(db.Integer, primary_key=True)
+    # id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(42), primary_key=True, default=generate_uuid())
 
     @classmethod
     def get_by_id(cls, record_id):
         """Get record by ID."""
-        if any(
-                (isinstance(record_id, basestring) and record_id.isdigit(),
-                 isinstance(record_id, (int, float))),
-        ):
-            return cls.query.get(int(record_id))
+        if (isinstance(record_id, str)):
+            return cls.query.get(str(record_id))
         return None
+
 
 
 def reference_col(tablename, nullable=False, pk_name='id', **kwargs):
