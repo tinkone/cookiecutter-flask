@@ -32,8 +32,8 @@ Features
 - Procfile for deploying to a PaaS (e.g. Heroku)
 - pytest and Factory-Boy for testing (example tests included)
 - Flask's Click CLI configured with simple commands
-- CSS and JS minification using Flask-Assets
-- Optional bower support for frontend package management
+- CSS and JS minification using webpack
+- npm support for frontend package management
 - Caching using Flask-Cache
 - Useful debug toolbar
 - Utilizes best practices: `Blueprints <http://flask.pocoo.org/docs/blueprints/>`_ and `Application Factory <http://flask.pocoo.org/docs/patterns/appfactories/>`_ patterns
@@ -70,6 +70,13 @@ BSD licensed.
 
 Changelog
 ---------
+
+0.13.0 (06/25/2017)
+*******************
+
+- Use webpack for building front-end assets. Front-end dependencies are
+  installed with NPM. Remove Flask-Assets and bower.json. Thanks
+  `@wroberts <https://github.com/wroberts>`_.
 
 0.12.0 (11/06/2016)
 *******************
