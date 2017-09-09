@@ -1,39 +1,63 @@
-# Everything needed in production
-
-# Flask
+alembic==0.9.3
+bcrypt==3.1.3
+beautifulsoup4==4.6.0
+blinker==1.4
+certifi==2017.7.27.1
+cffi==1.10.0
+chardet==3.0.4
+click==6.7
+cssmin==0.2.0
+factory-boy==2.8.1
+Faker==0.7.18
+flake8==3.3.0
+flake8-blind-except==0.1.1
+flake8-debugger==1.4.0
+flake8-docstrings==1.0.3
+flake8-isort==2.2
+flake8-polyfill==1.0.1
+flake8-quotes==0.9.0
 Flask==0.12.1
-MarkupSafe==1.0
-Werkzeug==0.12.1
-Jinja2==2.9.6
-itsdangerous==0.24
-click>=5.0
-
-# Database
-Flask-SQLAlchemy==2.2
-psycopg2==2.7.1
-SQLAlchemy==1.1.9
-
-# Migrations
-Flask-Migrate==2.0.3
-
-# Forms
-Flask-WTF==0.14.2
-WTForms==2.1
-
-# Deployment
-gunicorn>=19.1.1
-
-# Assets
 Flask-Assets==0.12
-cssmin>=0.2.0
-jsmin>=2.0.11
-
-# Auth
-Flask-Login==0.4.0
 Flask-Bcrypt==0.7.1
-
-# Caching
-Flask-Caching>=1.0.0
-
-# Debug toolbar
+Flask-Caching==1.3.2
 Flask-DebugToolbar==0.10.1
+Flask-Login==0.4.0
+Flask-Mail==0.9.1
+Flask-Migrate==2.0.3
+Flask-Moment==0.5.1
+Flask-Script==2.0.5
+Flask-SQLAlchemy==2.2
+Flask-WTF==0.14.2
+gunicorn==19.7.1
+idna==2.5
+isort==4.2.5
+itsdangerous==0.24
+Jinja2==2.9.6
+jsmin==2.2.2
+Mako==1.0.7
+MarkupSafe==1.0
+mccabe==0.6.1
+mysqlclient==1.3.10
+pep8-naming==0.4.1
+psycopg2==2.7.1
+py==1.4.34
+pycodestyle==2.3.1
+pycparser==2.18
+pydocstyle==2.0.0
+pyflakes==1.5.0
+pytest==3.0.7
+python-dateutil==2.6.1
+python-editor==1.0.3
+requests==2.18.3
+six==1.10.0
+snowballstemmer==1.2.1
+SQLAlchemy==1.1.9
+squareconnect==2.2.0
+testfixtures==5.1.1
+urllib3==1.22
+waitress==1.0.2
+webassets==0.12.1
+WebOb==1.7.3
+WebTest==2.0.27
+Werkzeug==0.12.1
+WTForms==2.1

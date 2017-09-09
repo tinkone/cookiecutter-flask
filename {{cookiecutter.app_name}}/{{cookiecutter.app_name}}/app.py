@@ -4,8 +4,25 @@ from flask import Flask, render_template
 
 from {{cookiecutter.app_name}} import commands, public, user
 from {{cookiecutter.app_name}}.assets import assets
-from {{cookiecutter.app_name}}.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate
+from {{cookiecutter.app_name}}.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate, moment, mail
 from {{cookiecutter.app_name}}.settings import ProdConfig
+from {{cookiecutter.app_name}}.settings import DevConfig
+
+
+import decimal, datetime,json
+import flask.json
+
+class AppJSONEncoder(flask.json.JSONEncoder):
+
+    def default(self, obj):
+        if isinstance(obj, datetime.date):
+            return obj.isoformat()
+        elif isinstance(obj, decimal.Decimal):
+            return float(obj)
+        try:
+            return obj.tojson()
+        except AttributeError:
+            return json.JSONEncoder.default(self, obj)
 
 
 def create_app(config_object=ProdConfig):
@@ -20,6 +37,7 @@ def create_app(config_object=ProdConfig):
     register_errorhandlers(app)
     register_shellcontext(app)
     register_commands(app)
+    register_mailer(app)
     return app
 
 
@@ -33,6 +51,8 @@ def register_extensions(app):
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
+    moment.init_app(app)
+    mail.init_app(app)
     return None
 
 
@@ -72,3 +92,13 @@ def register_commands(app):
     app.cli.add_command(commands.lint)
     app.cli.add_command(commands.clean)
     app.cli.add_command(commands.urls)
+
+
+def register_mailer(app):
+    from logging.handlers import SMTPHandler
+    credentials = None
+    if DevConfig.MAIL_USERNAME or DevConfig.MAIL_PASSWORD:
+        credentials = (DevConfig.MAIL_USERNAME, DevConfig.MAIL_PASSWORD)
+    mail_handler = SMTPHandler((DevConfig.MAIL_SERVER, DevConfig.MAIL_PORT),
+                               'no-reply@' + DevConfig.MAIL_SERVER, DevConfig.ADMINS,
+                               'Success kid!', credentials)

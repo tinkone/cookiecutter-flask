@@ -7,6 +7,10 @@ import uuid
 # Alias common SQLAlchemy names
 Column = db.Column
 relationship = db.relationship
+backref = db.backref
+ForeignKey = db.ForeignKey
+Table = db.Table
+
 
 
 def generate_uuid():
@@ -55,8 +59,8 @@ class SurrogatePK(object):
 
     __table_args__ = {'extend_existing': True}
 
-    # id = db.Column(db.Integer, primary_key=True)
-    id = db.Column(db.String(42), primary_key=True, default=generate_uuid())
+
+    id = db.Column(db.String(42), primary_key=True, default=lambda: uuid.uuid4().hex)
 
     @classmethod
     def get_by_id(cls, record_id):

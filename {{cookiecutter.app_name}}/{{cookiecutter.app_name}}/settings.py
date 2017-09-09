@@ -22,7 +22,28 @@ class ProdConfig(Config):
 
     ENV = 'prod'
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'  # TODO: Change me
+    DBNAME = os.environ.get('DBNAME', '')
+    DBHOST = os.environ.get('DBHOST', '')
+    DBPORT = 3306
+    DBUSER = os.environ.get('DBUSER', '')
+    DBPWD = os.environ.get('DBPWD', '')
+    DBURL = 'mysql://{DBUSER}:{DBPWD}@{DBHOST}:{DBPORT}/{DBNAME}'.format(**locals())
+    # Put the db file in project root
+
+    DB_PATH = os.path.join(Config.PROJECT_ROOT, DBNAME)
+
+    SQLALCHEMY_DATABASE_URI = DBURL
+    SQLALCHEMY_POOL_RECYCLE = 280
+    SQLALCHEMY_POOL_SIZE = 20
+
+    MAIL_SERVER = os.environ.get('SMTP')
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    ADMINS = ['donotreply@' + os.environ.get('DOMAIN', '')]
+
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
 
 
@@ -32,21 +53,29 @@ class DevConfig(Config):
     ENV = 'dev'
     DEBUG = True
 
-    dbname = 'dev.db' 
-    dbhost = 'localhost'
-    dbport = 3306
-    dbuser = 'developer'
-    dbpwd  = 'xxx'
-    dburl = 'mysql://{dbuser}:{dbpwd}@{dbhost}:{dbport}/{dbname}'.format(**locals())
+    DBNAME = 'dev.db'
+    DBHOST = '0.0.0.0'
+    DBPORT = 3306
+    DBUSER = 'developer'
+    DBPWD = 'xxx'
+    DBURL = 'mysql://{DBUSER}:{DBPWD}@{DBHOST}:{DBPORT}/{DBNAME}'.format(**locals())
     # Put the db file in project root
-    DB_PATH = os.path.join(Config.PROJECT_ROOT, dbname)
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+    DB_PATH = os.path.join(Config.PROJECT_ROOT, DBNAME)
 
-    SQLALCHEMY_DATABASE_URI = dburl
-    
+    SQLALCHEMY_DATABASE_URI = DBURL
+
     DEBUG_TB_ENABLED = True
     ASSETS_DEBUG = True  # Don't bundle/minify static assets
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
+
+    # email server
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    ADMINS = ['@gmail.com']
 
 
 class TestConfig(Config):
